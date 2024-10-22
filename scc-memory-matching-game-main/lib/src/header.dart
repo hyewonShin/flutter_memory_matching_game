@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
-  Header({super.key});
+  final int tryCount;
+  Header({super.key, this.tryCount = 0});
 
   int score = 100;
-  int tryCount = 10;
 
   @override
   Widget build(BuildContext context) {

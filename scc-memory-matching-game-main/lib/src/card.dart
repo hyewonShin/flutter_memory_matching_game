@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:memory_matching_game/src/card_model.dart';
 
 class CardWidget extends StatelessWidget {
-  final bool isFlipped;
-  final int cardNumber;
+  final CardModel card;
   final Function()? onTap;
-  CardWidget({
+  const CardWidget({
     super.key,
-    this.isFlipped = false,
-    this.cardNumber = 1,
+    required this.card,
     this.onTap,
   });
 
@@ -15,7 +14,8 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onTap != null && !isFlipped) {
+        if (onTap != null && !card.isFlipped) {
+          // 수정
           onTap!();
         }
       },
@@ -33,9 +33,9 @@ class CardWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: isFlipped
+        child: card.isFlipped // 수정
             ? Center(
-                child: Image.asset('assets/images/$cardNumber.png'),
+                child: Image.asset('assets/images/${card.cardValue}.png'), // 수정
               )
             : Container(
                 margin: EdgeInsets.all(8),

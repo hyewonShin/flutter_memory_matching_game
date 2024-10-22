@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:memory_matching_game/src/card_boards.dart';
 import 'package:memory_matching_game/src/header.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int tryCount = 0;
+
+  void updateTryCount() {
+    setState(() {
+      tryCount++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +29,9 @@ class Home extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Header(),
+            Header(tryCount: tryCount),
             SizedBox(height: 20),
-            Expanded(child: CardBoards()),
+            Expanded(child: CardBoards(updateTryCount: updateTryCount)),
           ],
         ),
       ),
