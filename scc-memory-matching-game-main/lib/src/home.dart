@@ -9,10 +9,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int tryCount = 0;
+  int score = 0;
 
   void updateTryCount() {
     setState(() {
       tryCount++;
+    });
+  }
+
+  void updateScore() {
+    setState(() {
+      score = score + 100;
     });
   }
 
@@ -29,9 +36,11 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Header(tryCount: tryCount),
+            Header(tryCount: tryCount, score: score),
             SizedBox(height: 20),
-            Expanded(child: CardBoards(updateTryCount: updateTryCount)),
+            Expanded(
+                child: CardBoards(
+                    updateTryCount: updateTryCount, updateScore: updateScore)),
           ],
         ),
       ),

@@ -4,7 +4,9 @@ import 'package:memory_matching_game/src/card_model.dart';
 
 class CardBoards extends StatefulWidget {
   final Function() updateTryCount;
-  CardBoards({super.key, required this.updateTryCount});
+  final Function() updateScore;
+  const CardBoards(
+      {super.key, required this.updateTryCount, required this.updateScore});
 
   @override
   State<CardBoards> createState() => _CardBoardsState();
@@ -35,6 +37,7 @@ class _CardBoardsState extends State<CardBoards> {
       var secondCard = cards[cardIndex];
       if (firstCard!.cardValue == secondCard.cardValue) {
         print('짝이 맞았습니다.');
+        widget.updateScore();
         instantFirstCard = null;
       } else {
         resetInstantCards(instantFirstCard!, secondCard);
