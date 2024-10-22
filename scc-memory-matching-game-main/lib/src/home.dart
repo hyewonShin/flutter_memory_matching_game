@@ -23,6 +23,13 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void resetGame() {
+    setState(() {
+      tryCount = 0;
+      score = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +43,7 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Header(tryCount: tryCount, score: score),
+            Header(tryCount: tryCount, score: score, resetGame: resetGame),
             SizedBox(height: 20),
             Expanded(
                 child: CardBoards(
